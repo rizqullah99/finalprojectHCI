@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Website informasi Kepulauan Kangean">
+	<title>Woodz</title>
+	<link rel="stylesheet" href="{% static 'styles.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<body>
+	<header> 
+		<!---Navbar--->
+		<section id="nav-bar">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#"><img src="{% static 'Logo.png' %}"></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav ml-auto">
+				  <li class="nav-item">
+			        <a class="nav-link" href="#about">About</a>
+			      </li>
+			      <li class="nav-item active">
+			        <a class="nav-link" href="news/">Kabar Kangean</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="katalog/">Tour Kangean</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#contact">Contact Us</a>
+				  </li>
+				  {% if user.is_authenticated %}
+					<li class="nav-item">
+					  <a class="nav-link">User: {{ user.get_username }}</a>
+					</li>
+					<li><a class="nav-link" href="{% url 'logout'%}">Logout</a></li>   
+				  {% else %}
+					<li class="nav-item"><a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+				  {% endif %} 
+				  </li>
+			    </ul>
+			  </div>
+			</nav>
+		</section>
+	</header>
+	<main>
+		<!---Slide Slider--->
+		<div id="Headerslider" class="carousel slide carousel-fade" data-ride="carousel">
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		      <img src="{% static 'Hutan.jpeg' %}" class="d-block w-100" alt="Hutan">
+		      	<div class=carousel-caption>
+		      		<h4>Apa Saja Flora Dan Fauna Yang Ada Di Hutan</h4>
+		      	</div>
+		    </div>
+		    <div class="carousel-item">
+		      <img src="{% static 'Pantai.jpg' %}" class="d-block w-100" alt="Pantai">
+		      	<div class=carousel-caption>
+		      		<h4>Keindahan Pantai Kangean</h4>
+		      	</div>
+		    </div>
+		    <div class="carousel-item">
+		      <img src="{% static 'Kepulauan.jpg' %}" class="d-block w-100" alt="Kepulauan">
+		    	<div class=carousel-caption>
+		      		<h4>Pulau Apa Saja Yang Ada Di Kepulauan Kangean</h4>
+		      	</div>
+		    </div>
+		  </div>
+		  <a class="carousel-control-prev" href="#Headerslider" role="button" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#Headerslider" role="button" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    <span class="sr-only">Next</span>
+		  </a>
+		</div>
+		<section id="about">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2> About Kangean</h2>
+						<div class="about-content">
+							Kepulauan Kangean merupakan gugusan pulau yang terdiri atas 60 pulau. Kepulauan Kangean terletak 120km (75mil) di sebelah utara pulau Bali, dan 120km di sebelah timur pulau Madura.
+							Kepulauan ini memiliki luas wilayah 668 km². Pulau-pulau terbesar adalah Pulau Kangean (188 km²), Pulau Paliat, dan Pulau Sepanjang.
+							Secara administratif kepulauan ini termasuk dalam wilayah Kabupaten Sumenep, Provinsi Jawa Timur, meskipun letaknya yang lebih dekat ke wilayah Indonesia bagian Tengah namun kepulauan kangean masih menggunakan waktu yang sesuai dengan wilayah Indonesia Bagian Barat WIB.
+						</div>
+						<button type="button" class="btn"><a href="https://id.wikipedia.org/wiki/Kepulauan_Kangean"> Read More </a></button>
+					</div>
+					<!-- <div class="col-md-6 percentage-bar">
+						<p>Kandungan Oksigen Di Pulau Kangean</p>
+						<div class="progress">
+							<div class="progress-bar" style="width: 21.5%;">21.5%</div>
+						</div>
+						<p>Kandungan Oksigen Rata-Rata Di Dunia</p>
+						<div class="progress">
+							<div class="progress-bar" style="width: 20%;">20%</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</section>
+		<section id="features">
+			<div class="container">
+				<h1> Our Features </h1>
+				<div class="row features">
+					<a class="col-md-4 text-center" href="news/" style="text-decoration: none; color: white;">
+						<div class="icon">
+						<i class="fa fa-tablet"></i>
+						</div>
+						<h3> Berita </h3>
+						<p> Kabar Kangean merupakan halaman dari website Woodz yang berisi informasi-informasi dan berita seputar Kepulauan Kangean, Kabar Kangean ini di tulis oleh reporter dari Kangean langsung, dan tentu saja beritanya valid dan terupdate
+						</p>
+					</a>
+					<a class="col-md-4 text-center" href="#kuis" style="text-decoration: none; color: white;">
+						<div class="icon">
+						<i class="fa fa-gamepad"></i>
+						</div>
+						<h3> Games </h3>
+						<p> Games pada website ini berbentuk kuis interaktif yang menggunakan flash. Games ini berisi 10 pertanyaan mendasar tentang Kepulauan Kangean yang menarik sehingga membuat pengguna semakin yakin untuk mengunjungi Kangean ini
+						</p>
+					</a>
+					<a class="col-md-4 text-center" href="katalog/" style="text-decoration: none; color: white;">
+						<div class="icon">
+						<i class="fa fa-plane"></i>
+						</div>
+						<h3> Tour </h3>
+						<p> Tour Kangean ini merupakan salah satu fitur dari Woodz dimana Tour Kangean ini akan memfasilitasi pengguna untuk melakukan booking Tour wisata Kangean melalui Contact Person yang disediakan, bisa juga dengan melakukan order langsung via Website
+						</p>
+					</a>
+				</div>
+			</div>
+		</section>
+		<section id="kuis">
+			<table width="100%" class="ex" cellspacing="0" border="1"> 
+				<tr> 
+					<td>
+					<object width="1280" height="800">
+						<param name="movie" value="{% static 'kuis.swf' %}">
+						<embed src="{% static 'kuis.swf' %}" width="1100" height="800">
+						</embed>
+					</object>
+					</td> 
+				</tr>
+			</table> 
+		</section>
+		<section id="contact">
+			<div class="container">
+				<h1>Contact Us</h1>
+				<div class=row>
+					<div class="col-md-12 contact-info">
+						<div class="follow"><b>Address:</b> <i class="fa fa-map"></i> Araya Mansion No. 8 - 22, Genitri, Tirtomoyo, Kec. Pakis, Malang, Jawa Timur 65154
+						</div>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.5710818400676!2d112.67901231422158!3d-7.93978349428092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62996bbca58e5%3A0x4234c14fe926b04d!2sUniversitas%20Bina%20Nusantara!5e0!3m2!1sid!2sid!4v1591295744448!5m2!1sid!2sid" width="1115" height="450" frameborder="5" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+						<div class="follow"><b>Phone Number:</b> <i class="fa fa-phone"></i>+62 812-3068-1858 (Rizqullah Akbar)
+						</div>
+						<div class="follow"><b>Email:</b> <i class="fa fa-envelope"></i>rizqullah.akbar@binus.ac.id
+						</div>
+						<div class="follow"><label><b>Our Social Media:</b></label>
+							<a href="https://www.facebook.com/kangeannet/"><i class="fa fa-facebook"></i></a>
+							<a href="https://www.youtube.com/channel/UCHLBmykN4Pnl5VOfiKojjGQ"><i class="fa fa-youtube"></i></a>
+							<a href="https://twitter.com/kangeannet"><i class="fa fa-twitter"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<section id="footer">
+			<div class="container">
+				<p>Made With <i class="fa fa-heart-o"></i> by Kelompok Gabut</p>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>

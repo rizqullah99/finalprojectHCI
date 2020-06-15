@@ -1,0 +1,91 @@
+<!-- {% load static %} -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kabar Kangean</title>
+    <link rel="stylesheet" href="{% static 'style news.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <header> 
+		<section id="nav-bar">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Logo.png' %}"></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav ml-auto">
+				  <li class="nav-item">
+			        <a class="nav-link" href="{% url 'index' %}">About</a>
+			      </li>
+			      <li class="nav-item active">
+			        <a class="nav-link" href="#">Kabar Kangean</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="{% url 'index' %}">Tour Kangean</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="{% url 'index' %}">Contact Us</a>
+				  </li>
+				  {% if user.is_authenticated %}
+					<li class="nav-item">
+					  <a class="nav-link">User: {{ user.get_username }}</a>
+					</li>
+					<li><a class="nav-link" href="{% url 'logout'%}">Logout</a></li>   
+				  {% else %}
+					<li class="nav-item"><a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+				  {% endif %} 
+				  </li>
+			    </ul>
+			  </div>
+			</nav>
+		</section>
+    </header>
+    <main>
+        <section class="news">
+            <div class="blog-post">
+                <div class="blog-post__img"> 
+                    <img src="{% static 'kangean.jpg' %}" alt="">
+                </div>
+                <div class="blog-post__info">
+                    <div class="blog-post__date">
+                        <span>Thrusday</span>
+                        <span>June 11 2020</span>
+                    </div>
+                    <h1 class="blog-post__tittle">Karnaval Budaya di Pulau Kangean Meriahkan Peringatan HUT RI Ke 73</h1>
+                    <p class="blog-post__text">Arjasa, Kangean - Pada tanggal 29-08-2018 dalam rangka memeriahkan peringatan kemerdekaan RI yang ke 73, sejumlah kegiatan dilaksanakan di Kecamatan Arjasa Pulau Kangean. Salah satunya kegiatannya dalah kirab budaya atau warga lokal lebih akrab menyebutnya karnaval.
+
+                        Peserta dalam acara ini sebagian besar adalah siswa sekolah yang ada di Arjasa, diikuti oleh semua jenjang pendidikan dari SD/MI, SMP/MTs, dan SMA/MA. Berikut ini adalah foto kegiatan karnaval kecamatan arjasa!</p>
+                    <a href="#" class="blog-post__cta">Read More</a>
+                </div>
+			</div>
+			<div class="blog-post">
+                <div class="blog-post__img"> 
+                    <img src="{% static 'kangean1.jpg' %}" alt="">
+                </div>
+                <div class="blog-post__info">
+                    <div class="blog-post__date">
+                        <span>Thrusday</span>
+                        <span>June 11 2020</span>
+                    </div>
+                    <h1 class="blog-post__tittle">World Cleanup Day 2019 Mengangkat Tema 'Kangean Lebur Mon Berse'
+					</h1>
+                    <p class="blog-post__text">
+						Terimakasih kepada para relawan yang telah berpartisipasi dalam acara World Cleanup Day pada tanggal 21 September 2019. Acara bersih-bersih ini terlaksana didua titik, yakni Lapangan Arjasa dan Pelabuhan Batu Guluk
+						
+						Terima kasih kepada Polsek Kangean, Pencinta Buku Kangean, Kangean Peduli Sosial, SD Muhammadiyah Kangean, @kangeanmangrovecommunity, dan semua pihak partisipan yang tak bisa kami sebut satu-persatu.
+						
+						Salut untuk koordinator wilayah kangean Lutsfi Siswanto dan Nanang Samsul yang telah mempersiapkan aksi ini dengan sangat baik. Semoga kegiatan ini menjadi pembuka keran untuk aksi-aksi besar lainnya. #worldcleanupday #kangean</p>
+                    <a href="#" class="blog-post__cta">Read More</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

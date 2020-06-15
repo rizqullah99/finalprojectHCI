@@ -1,0 +1,38 @@
+{% load static %}
+
+<html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style login.css' %}">
+</head>
+<body>
+{% if form.errors %}
+  <p>Your username and password didnt match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesnt have access to this page. To proceed,
+    please login with an account that has access.</p>
+  {% else %}
+    <p>Please login to see this page.</p>
+  {% endif %}
+{% endif %}
+
+    <div class="loginbox">
+      <img src="{% static 'avatar.png' %}" class="avatar">
+      <h1>Login Here</h1>
+      <form method="post" action="{% url 'login'%}">
+        {% csrf_token %}
+        <p>Username</p>
+        <!-- <input type="text" name="" placeholder="Enter Username"> -->
+        {{ form.username }}
+        <p>Password</p>
+        {{ form.password }}
+        <!-- <input type="password" name="" placeholder="Enter Password"> -->
+        <input type="submit" name="" value="Login">
+        <a href="">Dont have an account</a>
+      </form>
+    </div>
+</body>
+</html>

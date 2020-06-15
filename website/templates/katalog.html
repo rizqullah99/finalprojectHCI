@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="Website informasi Kepulauan Kangean">
+	<title>Woodz</title>
+	<link rel="stylesheet" href="{% static 'styles.css' %}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<body>
+	<header> 
+		<!---Navbar--->
+		<section id="nav-bar">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'Logo.png' %}"></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+			    <ul class="navbar-nav ml-auto">
+				  <li class="nav-item">
+			        <a class="nav-link" href="{% url 'index' %}">About</a>
+			      </li>
+			      <li class="nav-item active">
+			        <a class="nav-link" href="#">Kabar Kangean</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">Tour Kangean</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#contact">Contact Us</a>
+				  </li>
+				  {% if user.is_authenticated %}
+					<li class="nav-item">
+					  <a class="nav-link">User: {{ user.get_username }}</a>
+					</li>
+					<li><a class="nav-link" href="{% url 'logout'%}">Logout</a></li>   
+				  {% else %}
+					<li class="nav-item"><a class="nav-link" href="{% url 'login'%}?next={{request.path}}">Login</a></li>   
+				  {% endif %} 
+				  </li>
+			    </ul>
+			  </div>
+			</nav>
+		</section>
+	</header>
+	<main>
+		<section id="card">
+			<div class="container">
+				<div class="row">
+					{% for product in products %}
+					<div class="col">
+						<div class="card" style="width: 18rem;">
+							<img src= "{{product.image.url}}" class="card-img-top" alt="...">
+							<div class="card-body">
+							<h5 class="card-title">{{ product.name }}</h5>
+							<p class="card-text">{{ product.Description }}</p>
+							<a href="{% url 'checkout' %}" class="btn btn-primary">Order</a>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+		<section id="contact">
+			<div class="container">
+				<h1>Contact Us</h1>
+				<div class=row>
+					<div class="col-md-12">
+						<form class="contact-form">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Your Name" name="nama">
+							</div>
+							<div class="form-group">
+								<input type="number" class="form-control" placeholder="Phone Number">
+							</div>
+							<div class="form-group">
+								<label for="exampleFormControlSelect2">Pilih Jenis Paket</label>
+								<select multiple class="form-control" id="exampleFormControlSelect2" name="paket">
+									{% for packet in products %}
+										<option > {{ packet.name }} | Rp {{packet.price}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary" > <a href="https://api.whatsapp.com/send?phone=6281230681858&text=Mas%20Rizqu%0ASaya%20ingin%20pesan%20untuk%20Tour%20Wisata%20Kangean" style="text-decoration: none; color: white;">Send Message</a> </button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<section id="footer">
+			<div class="container">
+				<p>Made With <i class="fa fa-heart-o"></i> by Kelompok Gabut</p>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>
+	
+	
+
+   
